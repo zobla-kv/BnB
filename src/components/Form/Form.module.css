@@ -1,0 +1,49 @@
+
+
+.formWrapper { 
+  max-width: 600px;
+  border: 1px solid;
+  padding: 40px;
+  margin: auto;
+
+  .formHeader {
+    text-align: center;
+    span { font-size: 40px; }
+  }
+
+  .formBody {
+    .formGroup {
+      position: relative;
+      width: 100%;
+  
+      &:nth-of-type(1) { margin-top: 60px; }
+
+      label { margin-left: var(--form_label_spacing); }
+  
+      input { 
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .error {
+        position: absolute;
+        bottom: -24px;
+        left: var(--form_label_spacing);
+      }
+
+    }
+  }
+
+  .formFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    button { width: 30%; }
+  }
+
+}
