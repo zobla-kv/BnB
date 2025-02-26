@@ -1,6 +1,4 @@
 
-// TODO: update '' to ''
-
 import styles from './Form.module.css';
 
 import { useForm } from 'react-hook-form';
@@ -19,7 +17,7 @@ import AsyncButton from '../AsyncButton/AsyncButton';
 export type FormSchema = z.infer<typeof formSchema>;
 
 // comment: ideally this should be combined into an single object (see formConfig.ts file) //////////////////////
-// commnet: texts should be stored in a separate file as constants
+// comment: texts should be stored in a separate file as constants
 const formSchema = z.object({
   step1: z.object({
     firstName: z.string().min(5).regex(/^[A-Za-zÄÖÜäöüß]*$/, 'Only single name allowed in English or German'),
@@ -120,18 +118,16 @@ const Form = () => {
 
     const stepKey = `step${currentStep}` as keyof FormSchema;
 
-    console.log('currentStep: ', currentStep)
-
     // handle finalize
     if (isLastStep()) {
-      await handleAdd(getValues()[stepKey]);
+      await handleAdd(getValues());
       // TODO: show toast / redirect
       return;
     }
 
     const isValid = await trigger(stepKey);
     if (!isValid) {
-      console.log('Validation failed');
+      // TODO: show toast
       return;
     }
 
@@ -141,6 +137,7 @@ const Form = () => {
     await handleAdd(getValues()[stepKey]);
   };
 
+  // TODO: create models and fix 'any'
   const handleAdd = async (stepData: any): Promise<any> => {
     setIsLoading(true);
 
